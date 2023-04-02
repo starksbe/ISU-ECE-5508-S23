@@ -6,7 +6,7 @@
 # ------------------------------------------------------------------------------
 """File that performs a CRC-16 error detection algorithm."""
 
-def crc_16_decode(data: int, poly: int = 0x8005) -> int:
+def crc_16_decode(data: int, crc: int, poly: int = 0x8005) -> int:
     """Function to decode a four bytes of data with a two
     byte CRC checksum to verify the integrity of the data.
     
@@ -34,12 +34,9 @@ def crc_16_decode(data: int, poly: int = 0x8005) -> int:
         if data & (1 << (15-i)):
             # XOR the CRC register with the data word
             crc_register = crc_register ^ 0x0001
-
-    # XOR the final value of the CRC register with the CRC value received
-    final_crc = crc_register ^ crc
     
     # If the final CRC value is 0, the CRC check passed
-    if final_crc == 0:
+    if crc_register == crc:
         return True
     else:
         return False
