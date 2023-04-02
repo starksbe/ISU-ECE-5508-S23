@@ -48,5 +48,5 @@ if __name__ == "__main__":
     check = crc_16_decode(data, crc)
 
     print(f"Data:     {hex(data)}")
-    print(f"CRC:      {hex(crc)}")
+    print(f"CRC:      {bin(crc):.32}")
     print(f"No Error: {check}")
