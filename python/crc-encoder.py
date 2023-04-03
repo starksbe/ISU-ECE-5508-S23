@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # File:             crc-encoder.py
 # Description:      Performs CRC-16 error detection algorithm.
-# Author:           Barret Durchi & Brandon Starks
+# Author:           Barrett Durtschi & Brandon Starks
 # Date:             March April 1st, 2023
 # ------------------------------------------------------------------------------
 """File that performs a CRC-16 error detection algorithm."""
