@@ -19,7 +19,7 @@ def crc_16_decode(data: int, crc: int, poly: int = 0x8005) -> int:
         checksum provided with the data.
     """
     # The initial value of the CRC register
-    crc_register = 0x0000
+    crc_register = 0xFFFF
 
     # Iterate over each bit of the data word
     for i in range(16):
@@ -36,17 +36,7 @@ def crc_16_decode(data: int, crc: int, poly: int = 0x8005) -> int:
             crc_register = crc_register ^ 0x0001
     
     # If the final CRC value is 0, the CRC check passed
-    if crc_register == crc:
+    if crc_register & 0xFFFF == crc:
         return True
     else:
         return False
-
-if __name__ == "__main__":
-    # Example data with CRC encoded.
-    data = 0xbeef
-    crc = 0xbeef
-    check = crc_16_decode(data, crc)
-
-    print(f"Data:     {hex(data)}")
-    print(f"CRC:      {hex(crc)}")
-    print(f"No Error: {check}")
