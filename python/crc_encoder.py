@@ -20,7 +20,7 @@ def crc_16_encode(data: int, poly: int = 0x8005) -> int:
         appended after the LSB of the data.
     """
     # The initial value of the CRC register
-    crc = 0x0000
+    crc = 0xFFFF
 
     # Iterate over each bit of the data word
     for i in range(16):
@@ -37,12 +37,4 @@ def crc_16_encode(data: int, poly: int = 0x8005) -> int:
             crc = crc ^ 0x0001
 
     # Return the final value of the CRC register as a 16-bit integer
-    return crc
-
-if __name__ == "__main__":
-    # Example data with CRC encoded.
-    data = 0xbeef
-    crc = crc_16_encode(data)
-
-    print(f"Data:     {hex(data)}")
-    print(f"CRC:      {hex(crc)}")
+    return crc & 0xFFFF
