@@ -4,9 +4,9 @@
 # Author:           Brandon E. Starks
 # Date:             March 28th, 2023
 # ------------------------------------------------------------------------------
-"""File that performs a CRC-16 error detection algorithm."""
+"""File that performs a CRC-8 error detection algorithm."""
 
-def crc_16_decode(data: int, crc: int, poly: int = 0x8005) -> int:
+def crc_8_decode(data: int, crc: int, poly: int = 0x9B) -> int:
     """Function to decode a four bytes of data with a two
     byte CRC checksum to verify the integrity of the data.
     
@@ -19,24 +19,24 @@ def crc_16_decode(data: int, crc: int, poly: int = 0x8005) -> int:
         checksum provided with the data.
     """
     # The initial value of the CRC register
-    crc_register = 0xFFFF
+    crc_register = 0xFF
 
     # Iterate over each bit of the data word
-    for i in range(16):
+    for i in range(8):
         # If the current bit of the CRC register is 1
-        if crc_register & 0x8000:
+        if crc_register & 0x80:
             # XOR the CRC register with the polynomial
             crc_register = (crc_register << 1) ^ poly
         else:
             # Shift the CRC register to the left
             crc_register = crc_register << 1
         # If the current bit of the data word is 1
-        if data & (1 << (15-i)):
+        if data & (1 << (7-i)):
             # XOR the CRC register with the data word
-            crc_register = crc_register ^ 0x0001
+            crc_register = crc_register ^ 0x01
     
     # If the final CRC value is 0, the CRC check passed
-    if crc_register & 0xFFFF == crc:
+    if crc_register & 0xFF == crc:
         return True
     else:
         return False
