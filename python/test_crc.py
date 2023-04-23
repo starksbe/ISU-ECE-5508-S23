@@ -7,8 +7,8 @@
 """Test suite for the CRC-16 encoder/decoder modules."""
 
 import inspect
-from crc_encoder import crc_16_encode
-from crc_decoder import crc_16_decode
+from crc_encoder import crc_8_encode as crc_encode
+from crc_decoder import crc_8_decode as crc_decode
 
 def test_crc_8_encode() -> None:
     """Test function to verify expected output of the CRC-8 encoder
@@ -45,8 +45,8 @@ def test_crc_8(*data_values: int, show_results: bool = False) -> bool:
     """
     results = {}
     for data_word in data_values:
-        crc_header = crc_8_encode(data_word)
-        crc_pass = crc_8_decode(data_word, crc_header)
+        crc_header = crc_encode(data_word)
+        crc_pass = crc_decode(data_word, crc_header)
         results[hex(data_word)] = crc_pass
     
     if show_results:
