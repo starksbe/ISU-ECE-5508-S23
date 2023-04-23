@@ -21,13 +21,13 @@
 
 
 module crc_8_encoder(
-    input logic [7:0]inputData, [7:0]poly, //inputs include the user input data and constant crc polynomial
+    input logic [7:0]input_data, [7:0]poly, //inputs include the user input data and constant crc polynomial
     output logic [7:0]checksum             //only variable we want out of this is the checksum calculation
     );
     
 int unsigned crc = 16'h00ff;                             //temp variable
 
-always @(inputData) begin
+always @(input_data) begin
     crc = 16'h00ff;
     
     for (int i = 0; i < 8; i++) begin           //iterate over each literal in dataword
@@ -36,7 +36,7 @@ always @(inputData) begin
         else 
             crc = crc << 1;                    //shift CRC register to left
         
-        if (inputData & (1 << (7-i)))                 //if current literal in dataword is 1
+        if (input_data & (1 << (7-i)))                 //if current literal in dataword is 1
             crc = crc ^ 8'h01;                  //XOR crc with dataword
         
     checksum = crc & 8'hFF;

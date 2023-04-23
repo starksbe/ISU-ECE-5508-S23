@@ -22,20 +22,20 @@
 
 module crc_8_encoder_testbench();
     
-    logic [7:0]inputData, poly, checksum;
+    logic [7:0]input_data, poly, checksum;
     
-    crc_8_encoder dut (inputData, poly, checksum);
+    crc_8_encoder dut (input_data, poly, checksum);
     
     initial begin
         
-        $monitor( "inputData=%b, poly=%b, checksum=%b", inputData, poly, checksum);
+        $monitor( "input_data=%b, poly=%b, checksum=%b", input_data, poly, checksum);
     
-        inputData = 0; poly = 0; checksum = 0;
+        input_data = 0; poly = 0; checksum = 0;
         poly = 8'h9b;
         
-        inputData = 8'hde; #5;
-        inputData = 8'hbe; #5;
-        inputData = 8'hca; #5
+        input_data = 8'hde; #5;
+        input_data = 8'hbe; #5;
+        input_data = 8'hca; #5
         
         $finish;
     end
