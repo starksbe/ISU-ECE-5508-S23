@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module CRC_Encoder(
+module crc_8_encoder(
     input logic [7:0]inputData, [7:0]poly, //inputs include the user input data and constant crc polynomial
     output logic [7:0]checksum             //only variable we want out of this is the checksum calculation
     );

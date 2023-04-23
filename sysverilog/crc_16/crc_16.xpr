@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="61" Path="C:/Users/Barrett/Git/ISU-ECE-5508-S23/sysverilog/crc_16/crc_16.xpr">
+<Project Version="7" Minor="61" Path="C:/Users/Starks/Git/ECE-5508/sysverilog/crc_16/crc_16.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="d3b2c43eb33b4b909914bdb9bb15844d"/>
@@ -97,7 +97,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="CRC_Encoder"/>
+        <Option Name="TopModule" Val="crc_8_encoder"/>
         <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
     </FileSet>
@@ -118,7 +118,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="testbench1"/>
+        <Option Name="TopModule" Val="crc_8_encoder_testbench"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
         <Option Name="TopAutoSet" Val="TRUE"/>
         <Option Name="TransportPathDelay" Val="0"/>

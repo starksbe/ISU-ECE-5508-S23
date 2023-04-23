@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module testbench1(
+module crc_8_encoder_testbench(
     );
     
     logic [7:0]inputData, poly, crc, checksum;
