@@ -13,3 +13,45 @@
 start_gui
 open_project C:/Users/Starks/Git/ECE-5508/sysverilog/crc_16/crc_16.xpr
 update_compile_order -fileset sources_1
+launch_simulation
+source crc_8_encoder_testbench.tcl
+close_sim
+launch_simulation
+source crc_8_encoder_testbench.tcl
+close_sim
+launch_simulation
+source crc_8_encoder_testbench.tcl
+close_sim
+launch_simulation
+source crc_8_encoder_testbench.tcl
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+reset_run synth_1
+close_sim
+launch_simulation
+source crc_8_encoder_testbench.tcl
+close_sim
+launch_simulation
+source crc_8_encoder_testbench.tcl
+close_sim
+launch_simulation
+launch_simulation
+source crc_8_encoder_testbench.tcl
+close_sim
+launch_simulation
+launch_simulation
+launch_simulation
+launch_simulation
+launch_simulation
+launch_simulation
+source crc_8_encoder_testbench.tcl
+close_sim
+launch_simulation
+source crc_8_encoder_testbench.tcl
+close_sim
+launch_simulation
+source crc_8_encoder_testbench.tcl
+close_sim
+launch_simulation
+source crc_8_encoder_testbench.tcl
+close_sim
