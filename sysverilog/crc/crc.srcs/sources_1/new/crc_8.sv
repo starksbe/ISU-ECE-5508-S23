@@ -21,26 +21,51 @@
 
 
 module crc_8_encoder(
-    input logic [7:0]input_data, [7:0]poly, //inputs include the user input data and constant crc polynomial
-    output logic [7:0]checksum             //only variable we want out of this is the checksum calculation
+    input logic [7:0]data,  // Data is used to calculate checksum with poly.
+    output logic [7:0]checksum  // Checksum calculated for 0 result of XOR.
     );
     
-int unsigned crc = 16'h00ff;                             //temp variable
-
-always @(input_data) begin
-    crc = 16'h00ff;
+    int unsigned poly = 8'h9b;  // Internal variable for polynomial.
+    int unsigned crc = 16'h00ff; // Internal variable for CRC register.
     
-    for (int i = 0; i < 8; i++) begin           //iterate over each literal in dataword
-        if (crc & 8'h80)                        //if current bit of crc register is 1
-            crc = (crc << 1) ^ poly;           //XOR CRC variable with polynomial
-        else 
-            crc = crc << 1;                    //shift CRC register to left
+    always @(data) begin
+        crc = 16'h00ff;  // Reinitialize the CRC register for the convolutional XOR.
         
-        if (input_data & (1 << (7-i)))                 //if current literal in dataword is 1
-            crc = crc ^ 8'h01;                  //XOR crc with dataword
-        
-    checksum = crc & 8'hFF;
-
+        for (int i = 0; i < 8; i++) begin   // Iterate over each literal in dataword.
+            if (crc & 8'h80)                // If current bit of crc register is 1.
+                crc = (crc << 1) ^ poly;    // XOR CRC variable with polynomial.
+            else                            //
+                crc = crc << 1;             // Shift CRC register to left.
+            
+            if (data & (1 << (7-i)))        // If current literal in dataword is 1 ...
+                crc = crc ^ 8'h01;          // XOR CRC register with dataword.
+            end
+            
+        checksum = crc & 8'hff;             // Only take 8 LSBs for checksum
     end
-end
+endmodule
+
+module crc_8_decoder(
+    input logic [7:0] data, checksum,  //  Data and checksum used to calculate result.
+    output logic [7:0]result  // Result indicates if data received contains error (nonzero).
+    );
+    
+    int unsigned poly = 8'h9b;  // Internal variable for polynomial.
+    int unsigned crc = 16'h00ff; // Internal variable for CRC register.
+    
+    always @(data, crc) begin
+        crc = 16'h00ff;  // Reinitialize the CRC register for the convolutional XOR.
+        
+        for (int i = 0; i < 8; i++) begin   // Iterate over each literal in dataword.
+            if (crc & 8'h80)                // If current bit of crc register is 1.
+                crc = (crc << 1) ^ poly;    // XOR CRC variable with polynomial.
+            else                            //
+                crc = crc << 1;             // Shift CRC register to left.
+                
+            if (data & (1 << (7 - i)))      // If current literal in dataword is 1 ...
+                crc = crc ^ 8'h01;          // XOR CRC register with dataword.
+            end
+            
+        result = checksum - (crc & 8'hff);  // Compare calculated checksum with supplied.
+    end
 endmodule

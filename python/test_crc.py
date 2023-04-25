@@ -46,6 +46,7 @@ def test_crc_8(*data_values: int, show_results: bool = False) -> bool:
     results = {}
     for data_word in data_values:
         crc_header = crc_encode(data_word)
+        print(f"Data: {data_word:02x}, Checksum: {crc_header:02x}")
         crc_pass = crc_decode(data_word, crc_header)
         results[hex(data_word)] = crc_pass
     
