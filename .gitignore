@@ -1,3 +1,4 @@
+### VIVADO FILES
 ## log files
 *.log
 *.jou
@@ -63,3 +64,7 @@ xvlog.*
 
 ## checkpoint files
 *.dcp
+
+### PYTHON FILES
+## runtime pycache files.
+*.pyc
