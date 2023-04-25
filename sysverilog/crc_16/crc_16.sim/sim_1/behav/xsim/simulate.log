@@ -1,5 +1,0 @@
-Time resolution is 1 ps
-inputData=11011110, poly=10011011, checksum=10100101
-inputData=10111110, poly=10011011, checksum=11000101
-inputData=11001010, poly=10011011, checksum=10110001
-$finish called at time : 15 ns : File "C:/Users/Starks/Git/ECE-5508/sysverilog/crc_16/crc_16.srcs/sim_1/new/crc_8_encoder_tb.sv" Line 40
