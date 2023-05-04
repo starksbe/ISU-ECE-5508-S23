@@ -32,7 +32,5 @@ module crc_8_basys(
     
     // decoder(in data, in checksum, out result)
     crc_8_decoder decoder(sw[15:8], check[7:0], LED[15:8]);
-    
-//      assign LED[15:0] = sw[15:0];
-    
+        
 endmodule
