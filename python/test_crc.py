@@ -6,31 +6,8 @@
 # ------------------------------------------------------------------------------
 """Test suite for the CRC-16 encoder/decoder modules."""
 
-import inspect
 from crc_encoder import crc_8_encode as crc_encode
 from crc_decoder import crc_8_decode as crc_decode
-
-def test_crc_8_encode() -> None:
-    """Test function to verify expected output of the CRC-8 encoder
-    module.
-
-    Arguments:
-
-    
-    Returns:
-
-    """
-
-def test_crc_8_decode() -> None:
-    """Test function to verify expected output of the CRC-8 decoder
-    module.
-    
-    Arguments:
-        
-    
-    Returns:
-        
-    """
 
 def test_crc_8(*data_values: int, show_results: bool = False) -> bool:
     """Test function to verify expected behavior of the CRC-8 encoder
