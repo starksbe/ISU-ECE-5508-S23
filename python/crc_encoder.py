@@ -6,7 +6,6 @@
 # ------------------------------------------------------------------------------
 """File that performs a CRC error detection algorithm."""
 
-
 def crc_8_encode(data: int, poly: int = 0x9B) -> int:
     """Function to encode one byte of data with a one
     byte CRC checksum. Format of the encoded data is:
@@ -20,7 +19,7 @@ def crc_8_encode(data: int, poly: int = 0x9B) -> int:
         appended after the LSB of the data.
     """
     # The initial value of the CRC register
-    crc = 0xFF
+    crc = 0xff
 
     # Iterate over each bit of the data word
     for i in range(8):
@@ -32,12 +31,12 @@ def crc_8_encode(data: int, poly: int = 0x9B) -> int:
         else:
             # Shift the CRC register to the left
             crc = crc << 1
-          
+        
         # If the current bit of the data word is 1
         if data & (1 << (7-i)):
             # XOR the CRC register with the data word
             crc = crc ^ 0x01
-            
+                    
     # Return the final value of the CRC register as a 8-bit integer
     return crc & 0xFF
 
