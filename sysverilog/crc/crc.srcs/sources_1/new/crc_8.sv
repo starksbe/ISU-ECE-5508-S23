@@ -23,13 +23,13 @@
 module crc_8_encoder(
     input logic [7:0] data,  // Data is used to calculate checksum with poly.
     output logic [7:0] checksum  // Checksum calculated for 0 result of XOR.
-    , int unsigned crc_reg
+    // , int unsigned crc_reg
     );
     
     int unsigned poly = 8'h9b;  // Internal variable for polynomial.
     int unsigned crc = 16'h00ff; // Internal variable for CRC register.
     
-    assign crc_reg = crc;
+    // assign crc_reg = crc;
     
     always @(data) begin
         crc = 16'h00ff;  // Reinitialize the CRC register for the modulo 2 division.
@@ -52,13 +52,13 @@ endmodule
 module crc_8_decoder(
     input logic [7:0] data, checksum,  //  Data and checksum used to calculate result.
     output logic [7:0] result  // Result indicates if data received contains error (nonzero).
-    , int unsigned crc_reg
+    // , int unsigned crc_reg
     );
     
     int unsigned poly = 8'h9b;  // Internal variable for polynomial.
     int unsigned crc = 16'h00ff; // Internal variable for CRC register.
     
-    assign crc_reg = crc;
+    // assign crc_reg = crc;
     
     always @(data, checksum) begin
         crc = 16'h00ff;  // Reinitialize the CRC register for the modulo 2 division.

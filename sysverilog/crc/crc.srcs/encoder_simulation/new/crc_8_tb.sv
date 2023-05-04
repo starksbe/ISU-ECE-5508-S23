@@ -24,7 +24,7 @@ module crc_8_encoder_testbench();
     
     logic [7:0] data, checksum; int unsigned crc_reg;
     
-    crc_8_encoder dut (data, checksum, crc_reg);
+    crc_8_encoder dut (data, checksum);  //, crc_reg);
     
     initial begin
         
@@ -48,7 +48,7 @@ module crc_8_decoder_testbench();
     
     logic [7:0] data, checksum, result;  int unsigned crc_reg;
     
-    crc_8_decoder dut (data, checksum, result, crc_reg);
+    crc_8_decoder dut (data, checksum, result);  //, crc_reg);
     
     initial begin
         
