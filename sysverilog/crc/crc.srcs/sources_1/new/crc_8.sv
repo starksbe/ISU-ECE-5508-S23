@@ -60,7 +60,7 @@ module crc_8_decoder(
     
     // assign crc_reg = crc;
     
-    always @(data, checksum) begin
+    always @(data) begin //, checksum) begin
         crc = 16'h00ff;  // Reinitialize the CRC register for the modulo 2 division.
         
         for (int i = 0; i < 8; i++) begin   // Iterate over each literal in dataword.
@@ -74,6 +74,6 @@ module crc_8_decoder(
             #1;                             //
             end                             //
                                             //
-        result = checksum - (crc & 8'hff);  // Compare calculated checksum with supplied.
+    result = checksum - (crc & 8'hff);  // Compare calculated checksum with supplied.
     end
 endmodule
